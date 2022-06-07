@@ -82,9 +82,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //y así, cuando toque la imagen, ya voy a saber qué url VISITAR
             contador_web++;
         }
+        //15 minutos para hacer el
         //TODO HACER EL LAYOUT-LAND landscape apaisado
+        //el que mejor esté, lo vemos y que lo suba al GITHUB
         //TODO ABRIR LA WEB DESDE NUESTRA APP CON WEBVIEW
-        //A Y 35 VOLVEMOS
+
 
     }
 
