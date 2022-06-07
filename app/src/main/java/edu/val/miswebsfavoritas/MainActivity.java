@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout linearWeb1;
     private LinearLayout linearWeb2;
@@ -38,8 +39,19 @@ public class MainActivity extends AppCompatActivity {
         //{
 
         //}
+
+        //para cada cajita, le vamos a asociar su información correspondiente
+        //recorrer los layouts e ir asignándole su WebFavorita (favicon, url, texto)
         List<LinearLayout> linearLayouts;
         linearLayouts = List.of(this.linearWeb1,this.linearWeb2,this.linearWeb3, this.linearWeb4, this.linearWeb5, this.linearWeb6 );
+
+        /*ArrayList<LinearLayout> lista_linears = new ArrayList<LinearLayout>();
+        lista_linears.add(linearWeb1);
+        lista_linears.add(linearWeb2);
+        lista_linears.add(linearWeb3);
+        lista_linears.add(linearWeb4);
+        lista_linears.add(linearWeb5);
+        lista_linears.add(linearWeb6);*/
 
 
         WebFavorita webFavorita = new WebFavorita("Chic", "https://www.libertaddigital.com/chic/", R.drawable.logochic);
@@ -51,24 +63,34 @@ public class MainActivity extends AppCompatActivity {
 
         List<WebFavorita> webFavoritaList = List.of(webFavorita, webFavorita2, webFavorita3, webFavorita4, webFavorita5, webFavorita6);
 
-        int contador_web =0;
-        //FOR EACH de JAVA
-        for (LinearLayout linearActual : linearLayouts)
+        int contador_web =0;//índice, que me sirve para ir accediendo a los elementos de la otra lista
+        //FOR EACH de JAVA: para cada linear, que haya en la lista de layotus
+        //automáticamente, JAVA, va poniendo en la variable linearActual, el elemento de la lista que toca
+
+        for (LinearLayout linearActual : linearLayouts)//aquí linearActual va a ser cada vez un elemento distinto de linearLayouts
         {
             ImageView imageView = (ImageView) linearActual.getChildAt(0);
             WebFavorita web_actual = webFavoritaList.get(contador_web);
+            //web_actual.logo_web;
             imageView.setImageResource(web_actual.getLogo_web());
-            imageView.setOnClickListener(this::imagenTocada);
+            //imageView.setOnClickListener(this);//onCLikc
+            imageView.setOnClickListener(this::imagenTocada);//programar el listener: cuando te toquen, vas a llamar al método imangeTocada definido en esta clase this
+            /*imageView.setOnClickListener(vista->{
+                Log.d("ETIQUETA_LOG", "imagenTocada2");
+            });*/
             imageView.setTag(web_actual);//asocio a cada imagen, la información de la web asociada WEB FAVORITA
             //y así, cuando toque la imagen, ya voy a saber qué url VISITAR
             contador_web++;
         }
         //TODO HACER EL LAYOUT-LAND landscape apaisado
+        //TODO ABRIR LA WEB DESDE NUESTRA APP CON WEBVIEW
+        //A Y 35 VOLVEMOS
 
     }
 
     public void imagenTocada (View view)
     {
+        Log.d("ETIQUETA_LOG", "imagenTocada");
          WebFavorita webFavorita = (WebFavorita) view.getTag();//de la imagen, obtengo la webFavorita asociada
         String web = webFavorita.getUrl_sitio();
         Log.d("ETIQUETA_LOG", "QUIERE VISITAR " + web);
@@ -77,5 +99,10 @@ public class MainActivity extends AppCompatActivity {
         {
             startActivity(intent_implicito_web);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Log.d("ETIQUETA_LOG", "ON CLICK");
     }
 }
