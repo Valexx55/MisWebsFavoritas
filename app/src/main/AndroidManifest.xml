@@ -6,6 +6,7 @@
     <!-- DECLARO LOS PERMISOS QUE NECESITA MI APP -->
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,23 +20,16 @@
         <activity
             android:name=".ActividadWeb"
             android:exported="true">
-            <intent-filter>
 
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

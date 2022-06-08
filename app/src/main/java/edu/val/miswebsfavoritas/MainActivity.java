@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String web = webFavorita.getUrl_sitio();
         Log.d("ETIQUETA_LOG", "QUIERE VISITAR " + web);
         Intent intent_implicito_web = new Intent(Intent.ACTION_VIEW, Uri.parse(web));
-        Intent chooser = Intent.createChooser(intent_implicito_web, "ELIJA APP");
+
         if (intent_implicito_web.resolveActivity(getPackageManager())!=null)
         {
-            startActivity(chooser);
+            startActivity(intent_implicito_web);
         }
     }
 
